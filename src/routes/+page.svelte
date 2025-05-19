@@ -1,72 +1,46 @@
 <script lang="ts">
-  import SplitView from "$lib/SplitView.svelte";
-  import SplitPane from "$lib/SplitPane.svelte";
-  import IdRenderer from "$lib/IdRenderer.svelte";
-  // import DragResizable from "$lib/DragResizable.svelte";
+	import SplitView from "$lib/SplitView.svelte";
+	import SplitPane from "$lib/SplitPane.svelte";
+	import Explorer from "$lib/Explorer.svelte";
+	import MenuBar from "$lib/MenuBar/MenuBar.svelte";
+	import MenuBarItem from "$lib/MenuBar/MenuBarItem.svelte";
+	import MenuSubmenu from "$lib/MenuBar/MenuSubmenu.svelte";
+	// import Titlebar from "$lib/Titlebar.svelte";
 
-  let panes: number[] = $state([15, 20, -1]);
+	function menuHandler(id?: string) {
+		if (id) console.log(`Menu item "${id}" clicked`);
+		else console.log("Unknown menu item clicked");
+	}
 
-  function clickdel(id: number) {
-    console.log(`removing ${id}`);
-    panes.splice(id, 1);
-  }
+	function openHandler() {
+		console.log("Open");
+	}
 
-  function clickins(id: number) {
-    console.log(`adding ${id}`);
-    panes.splice(id, 0, 15);
-  }
+	function closeHandler() {
+		console.log("Close");
+	}
 </script>
 
-<SplitView>
-  {#each panes as pane, i}
-    <SplitPane size={pane === -1 ? undefined : pane} grow={pane === -1}>
-      <div
-        style="background-color: rgb({(i + 1) *
-          70}, 0, 0); width: 100%; height: 100%"
-      >
-        <IdRenderer />
-        <button onclick={() => clickdel(i)}>Delete</button>
-        <button onclick={() => clickins(i)}>Insert</button>
-      </div>
-    </SplitPane>
-  {/each}
+<div class="w-full h-full flex flex-col">
+	<!-- <Titlebar /> -->
+	<MenuBar>
+		<MenuSubmenu id={"file"} title={"File"}>
+			<MenuBarItem id={"file/save"} title={"Save"} />
+			<MenuBarItem id={"file/saveall"} title={"Save All"} />
+			<MenuSubmenu id={"file/export"} title={"Export"}>
+				<MenuBarItem id={"file/export/json"} title={"JSON (.json)"} />
+				<MenuBarItem id={"file/export/xml"} title={"XML (.xml)"} />
+			</MenuSubmenu>
+		</MenuSubmenu>
+		<MenuBarItem id={"open"} title={"Open"} onClick={menuHandler} />
+		<MenuBarItem id={"close"} title={"Close"} onClick={menuHandler} />
+	</MenuBar>
 
-  <!-- <SplitPane size={15}>
-        <div style="background-color: green;"><IdRenderer /></div>
-    </SplitPane>
-    <SplitPane size={20}>
-        <div style="background-color: yellow;"><IdRenderer /></div>
-    </SplitPane>
-    <SplitPane grow={true}>
-        <h1 style="background-color: orangered;"><IdRenderer /></h1>
-    </SplitPane> -->
-</SplitView>
-
-<!-- <section class="base">
-    <DragResizable initialSize="200" minSize="150" barSize="10">
-        <div class="sidebar">1</div>
-    </DragResizable>
-    <div class="body">2</div>
-</section>
-
-<style>
-    .base {
-        width: 100%;
-        height: 100%;
-
-        display: grid;
-        grid: "sidebar body" 1fr / auto 1fr;
-    }
-
-    .sidebar {
-        grid-area: sidebar;
-        width: 100%;
-        height: 100%;
-        background-color: brown;
-    }
-
-    .body {
-        grid-area: body;
-        background-color: brown;
-    }
-</style> -->
+	<SplitView class="w-full h-full">
+		<SplitPane size={5} resizable={false}></SplitPane>
+		<SplitPane size={20}><Explorer /></SplitPane>
+		<SplitPane grow={true}>
+			<div class="h-full w-full bg-amber-600"></div>
+		</SplitPane>
+	</SplitView>
+</div>

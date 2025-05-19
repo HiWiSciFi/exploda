@@ -2,28 +2,32 @@ export const C = {
     CSS: {
         DISPLAY: {
             BLOCK: "block",
-            NONE: "none"
+            FLEX: "flex",
+            NONE: "hidden",
+            GRID: "grid"
         },
         CURSOR: {
+            AUTO: "cursor-auto",
             RESIZE: {
-                N: "n-resize",
-                E: "e-resize",
-                S: "s-resize",
-                W: "w-resize",
-                NE: "ne-resize",
-                NW: "nw-resize",
-                SE: "se-resize",
-                SW: "sw-resize",
-                EW: "ew-resize",
-                NS: "ns-resize",
-                NESW: "nesw-resize",
-                NWSE: "nwse-resize"
+                N: "cursor-n-resize",
+                E: "cursor-e-resize",
+                S: "cursor-s-resize",
+                W: "cursor-w-resize",
+                NE: "cursor-ne-resize",
+                NW: "cursor-nw-resize",
+                SE: "cursor-se-resize",
+                SW: "cursor-sw-resize",
+                EW: "cursor-ew-resize",
+                NS: "cursor-ns-resize",
+                NESW: "cursor-nesw-resize",
+                NWSE: "cursor-nwse-resize"
             }
         }
     },
     CONTEXT: {
         ID: "CONTEXT_ID",
         CURSOR_CONTROL: "CONTEXT_CURSOR_CONTROL",
-        SPLIT_VIEW: "CONTEXT_SPLIT_VIEW"
+        SPLIT_VIEW: "CONTEXT_SPLIT_VIEW",
+        MENU_BAR: "CONTEXT_MENU_BAR"
     }
 }

@@ -12,7 +12,7 @@
 
     let { children }: { children?: Snippet } = $props();
 
-    let cursor = $state("");
+    let cursor = $state(C.CSS.CURSOR.AUTO);
 
     setContext<CursorControlContext>(C.CONTEXT.CURSOR_CONTROL, {
         setCursor,
@@ -25,7 +25,7 @@
     }
 
     function unsetCursor(): void {
-        cursor = "";
+        cursor = C.CSS.CURSOR.AUTO;
     }
 
     function getCursor(): string {
@@ -33,17 +33,6 @@
     }
 </script>
 
-<div
-    class="cursor_container"
-    style={cursor === "" ? "" : "cursor: " + cursor + ";"}
->
+<div class="block w-full h-full {cursor}">
     {@render children?.()}
 </div>
-
-<style>
-    .cursor_container {
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-</style>

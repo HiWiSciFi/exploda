@@ -2,6 +2,7 @@
     export interface SplitViewPane {
         getId: () => number;
         setId: (id: number) => void;
+        setLast: (last: boolean) => void;
     }
 
     export interface SplitViewContext {
@@ -26,8 +27,13 @@
     let splitViewPanes: SplitViewPane[] = $state([]);
 
     function onCreatePane(pane: SplitViewPane): void {
+        if (splitViewPanes.length > 0) {
+            splitViewPanes[splitViewPanes.length - 1].setLast(false);
+        }
+
         let id = splitViewPanes.push(pane) - 1;
         pane.setId(id);
+        pane.setLast(true);
     }
 
     function onDeletePane(id: number): void {
@@ -46,6 +52,3 @@
         {@render children?.()}
     </div>
 </div>
-
-<style>
-</style>

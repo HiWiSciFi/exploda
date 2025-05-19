@@ -14,7 +14,13 @@
         children,
         size,
         grow = false,
-    }: { children?: Snippet; size?: number; grow?: boolean } = $props();
+        resizable = true,
+    }: {
+        children?: Snippet;
+        size?: number;
+        grow?: boolean;
+        resizable?: boolean;
+    } = $props();
     let id: number = $state(-1);
 
     let widthInitial = $state(true);
@@ -22,6 +28,8 @@
     let widthstr = $derived(
         widthInitial ? (size ? size + "%" : "auto") : currentWidth + "px",
     );
+
+    let last = $state(false);
 
     let { setCursor, unsetCursor } = getContext<CursorControlContext>(
         C.CONTEXT.CURSOR_CONTROL,
@@ -33,6 +41,7 @@
     context.onCreatePane({
         getId: getId,
         setId: setId,
+        setLast: setLast,
     });
 
     onMount(() => {
@@ -51,7 +60,11 @@
         context.onDeletePane(id);
     });
 
-    function setId(newId: number) {
+    function setLast(newLast: boolean): void {
+        last = newLast;
+    }
+
+    function setId(newId: number): void {
         id = newId;
     }
 
@@ -87,20 +100,20 @@
 
 <div
     bind:this={container}
-    class="block relative"
-    style="width: {widthstr};{grow ? ' flex-grow: 1;' : ''}"
+    class="block relative {grow ? 'grow' : ''}"
+    style="width: {widthstr};"
 >
     {@render children?.()}
 </div>
-<div
-    class="w-0.5 h-full bg-gray-400 cursor-ew-resize"
-    onmousedown={startResize}
-    role="none"
->
-    <div
-        class="block absolute bg-green-700 w-1 h-full -m-0.5 z-10 opacity-0 transition-opacity hover:opacity-100"
-    ></div>
-</div>
 
-<style>
-</style>
+{#if resizable && !last}
+    <div
+        class="w-0.5 h-full bg-gray-400 cursor-ew-resize relative"
+        onmousedown={startResize}
+        role="none"
+    >
+        <div
+            class="block absolute bg-green-700 w-1 h-full -ml-0.5 z-10 opacity-0 transition-opacity hover:opacity-100"
+        ></div>
+    </div>
+{/if}
