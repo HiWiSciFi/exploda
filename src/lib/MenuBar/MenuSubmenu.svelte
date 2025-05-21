@@ -51,8 +51,6 @@
     }
 
     onMount(() => {
-        console.log(`Submenu ${id}`);
-        console.log(parentMenu);
         if (isFrontendBrowser()) return;
         parentMenu.onAddItem(options);
     });
@@ -63,7 +61,7 @@
 {#if isFrontendBrowser()}
     <button
         onclick={toggleMenu}
-        class=" relative {parentMenu.submenu
+        class="relative {parentMenu.submenu
             ? 'px-4 py-0.5'
             : 'px-2 py-1'} hover:bg-amber-600 text-left"
         >{title}
@@ -78,7 +76,7 @@
                 ? 'visible opacity-100'
                 : 'invisible opacity-0'} absolute {parentMenu.submenu
                 ? 'left-full top-0'
-                : 'left-0 top-full'} flex-col z-3 bg-slate-500 items-stretch p-1 w-max rounded-sm border-solid border-1"
+                : 'left-0 top-full'} flex-col z-3 bg-slate-500 p-1 w-max rounded-sm border-solid border-1"
         >
             {@render children?.()}
         </div>

@@ -32,10 +32,10 @@
         onclick={() => buttonHandler(id)}
         class="{menuContext.submenu
             ? 'px-4 py-0.5'
-            : 'px-2 py-1'} hover:bg-amber-600 text-left flex flex-row gap-8"
+            : 'px-2 py-1'} hover:bg-amber-600 text-left"
         >{title}
         <IconChevronRight
-            style="height: 1rem; float: right; {menuContext.submenu
+            style="height: 1rem; float: right; vertical-align: middle; padding-left: 40px; {menuContext.submenu
                 ? 'visibility: hidden;'
                 : 'display: none;'}"
         />
