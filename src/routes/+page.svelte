@@ -7,6 +7,32 @@
 	import MenuSubmenu from "$lib/MenuBar/MenuSubmenu.svelte";
 	// import Titlebar from "$lib/Titlebar.svelte";
 
+	// import Edm from "$lib/OData/EdmTypes";
+
+	// let dtstr = "datetime'2025-05-25T23:59:59.1234567'";
+	// let dt = Edm.DateTime.datetimeFromODataString(dtstr);
+	// console.log(dtstr);
+	// console.log(dt);
+	// console.log(dt?.toString());
+
+	// let fstr = "0.12345678f";
+	// let ft = Edm.Single.singleFromODataString(fstr);
+	// console.log(fstr);
+	// console.log(ft);
+	// console.log(ft?.toString());
+
+	// let tstr = "time'PT20H17M44.345S'";
+	// let tt = Edm.Time.timeFromODataString(tstr);
+	// console.log(tstr);
+	// console.log(tt);
+	// console.log(tt?.toString());
+
+	// let dtostr = "datetimeoffset'2002-10-10T17:00:00.3+01:00'";
+	// let dto = Edm.DateTimeOffset.datetimeoffsetFromODataString(dtostr);
+	// console.log(dtostr);
+	// console.log(dto);
+	// console.log(dto?.toString());
+
 	function menuHandler(id?: string) {
 		if (id) console.log(`Menu item "${id}" clicked`);
 		else console.log("Unknown menu item clicked");
