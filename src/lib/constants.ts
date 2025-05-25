@@ -28,6 +28,7 @@ export const C = {
         ID: "CONTEXT_ID",
         CURSOR_CONTROL: "CONTEXT_CURSOR_CONTROL",
         SPLIT_VIEW: "CONTEXT_SPLIT_VIEW",
-        MENU_BAR: "CONTEXT_MENU_BAR"
+        MENU_BAR: "CONTEXT_MENU_BAR",
+        EXPLORER: "CONTEXT_EXPLORER"
     }
 }
